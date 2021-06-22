@@ -2,12 +2,13 @@
 import './style.css'
 import React from 'react'
 
-const ListBox = (({setVal, array , arrayValues}) => {
+const ListBox = (({ setVal, array , arrayValues }) => {
     //Component creating a dropdown menu
     const options = array.map( (element, index) => 
-    (<option value = {arrayValues[index]} key = {index}>{element}</option>) );
+    // eslint-disable-next-line react/no-array-index-key
+    (<option value = { arrayValues[ index ] } key = { index }>{element}</option>) );
     return(
-        <select className = 'drop-down' onChange = {(e) => setVal(e.target.value)}>{options}
+        <select className = 'drop-down' onChange = { (e) => setVal(e.target.value) }>{options}
         </select >
     )
 });
