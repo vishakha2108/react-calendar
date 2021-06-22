@@ -1,0 +1,89 @@
+.display-flex
+{
+	display: flex;
+	justify-content:center;
+}
+.date-select-division
+{
+	margin-bottom:40px ;
+}
+.numeric-date 
+{
+	height:80px;
+	width :12%;
+	cursor: pointer;
+}
+.days{
+	height:30px;
+	width :12%;
+	text-align: center;
+}
+.hide
+{
+	visibility:hidden ;
+}
+.arrowleft{
+	position: absolute;
+	width :0;
+	height :0;
+	border-right:20px solid plum;
+	border-top:10px solid transparent;
+	border-bottom:10px solid transparent;
+}
+.popup{
+	position: absolute;
+	width :200px;
+	height:100px ;
+    background-color:plum;
+}
+.drop-down
+{
+	margin-right: 20px;
+}
+.heading
+{
+  text-align : center;
+}
+.button{
+	position: absolute;
+	align-self: flex-end;
+	margin-bottom :5px;
+	cursor :pointer;
+}
+.enterMemo
+{
+  position: fixed;
+  background:#00000050;
+  width:100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+.memoObject{
+	
+	align-self: center;
+	margin :10px;
+	
+}
+.memos{
+	justify-content: center;
+	align-self: flex-start;
+	margin-left:-20px;
+	margin-bottom: 5px;
+
+}
+.box{
+	position:absolute;
+	background: #fff;
+	height: 100px;
+
+}
+.close-icon{
+	position:absolute;
+	margin-left:90%;
+	background: red;
+	align-self: flex-start;
+	cursor:pointer ;
+	width:20px;
+	text-align: center;
+}
