@@ -1,48 +1,45 @@
 /* eslint-disable react/prop-types */
 import './style.css'
 import React from 'react'
-function CreateWeek(buttons, week){
+const Day = ({ visible, innerText, setValC }) => {
     return(
-        <div className = 'week display-flex' key = { week }>{buttons}</div>
+        <button className = { (visible===true)?'numeric-date':'hide numeric-date' } key = { innerText } 
+        onClick = { (e) => setValC(e.target) } >{innerText}</button>
     )
-}
 
-function Calendar({ setValC, month, year }) {
+}
+const Week = ({ startText, noOfDays, setValC }) => {
+    let i = startText;
+    return(
+        <div className ='week display-flex'>
+            <Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC }/>
+            <Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC }/>
+            <Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC }/>
+            <Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC }/>
+            <Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC }/>
+            <Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC }/>
+            <Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC }/>
+        </div>
+    )
+
+}
+const Calendar = ({ setValC, month, year }) => {
     const userDate = new Date(`20${ year }`, month - 1);
     //getting the number of the day on which this month starts
     const day = userDate.getDay();
-    const dateButtons = [];
-    //No of Days in the month
-    let buttons = [];
     let week = 1;
     const noOfDays = new Date(`20${ year }`, month, 0).getDate();
-    let keyCount = 0;
-    for (let i = 0; i <day; i++) {
-        buttons.push(<button className = 'hide numeric-date' key = { keyCount }></button>)
-        keyCount++;
-    }
-    let count = day ;
-    for (let i = 1; i <= noOfDays; i++) {
-        count++;
-        buttons.push(<button className = 'numeric-date' key = { keyCount } onClick = { (e) => setValC(e.target) }>{i}</button>)
-        if(count === 7)
-        {
-            dateButtons.push(CreateWeek(buttons,week));
-            week++;
-            count = 0;
-            buttons = [];
-        }
-        keyCount++;
-    }
-    for (let i = (count + noOfDays + 1); count !== 7; i++) {
-        count++;
-        buttons.push(<button className = 'hide numeric-date' key = { keyCount }></button>)
-        keyCount++;
-    }
-    week++;
-    dateButtons.push(CreateWeek(buttons, week));
     return(
-        <div className = "inner" key = 'innerCalendar'>{dateButtons}</div>
+        <div className = "inner">
+            <Week startText = { -day+1 } noOfDays = { noOfDays } key = { week++ } setValC = { setValC }/>
+            <Week startText = { -day+8 } noOfDays = { noOfDays } key = { week++ } setValC = { setValC }/>
+            <Week startText = { -day+15 } noOfDays = { noOfDays } key = { week++ } setValC = { setValC }/>
+            <Week startText = { -day+22 } noOfDays = { noOfDays } key = { week++ } setValC = { setValC }/>
+            <Week startText = { -day+29 } noOfDays = { noOfDays } key = { week++ } setValC = { setValC }/>
+            <Week startText = { -day+36 } noOfDays = { noOfDays } key = { week++ } setValC = { setValC }/>
+        </div >
     )
+
 }
+
 export default Calendar;
