@@ -1,10 +1,10 @@
 import './style.css';
 import ListBox from './ListBox'
 import React, { useState } from 'react'
-import GenerateCalendar from './DisplayCalendar'
+import Calendar from './Calendar'
 import Popup from './Popup'
 
-const GetWeekDays = (() => {
+const WeekDays = (() => {
     //creates the name of days
     const nameOfDaysArray = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 
     ' Thursday', 'Friday', 'Saturday' ];
@@ -39,17 +39,22 @@ function App() {
     arrayYearsValues.push(yearString.substring(2, 4));
     yearIterator += 1;
   }
+  let elementPopup = null;
+  if(clicked!=null)
+  {
+    elementPopup = <Popup setValC = { setClicked } 
+    events = { events }  element = { clicked } month = { month } year = { year }/> 
+  }
   return (
       <>
           <h1 className = 'heading'>Calendar</h1>
           <div className = 'display-flex' key = 'd1'>
-              <ListBox setVal = { (x) => setMonth(x) } array = { arrayMonths } arrayValues = { arrayMonthsValues } key = "m"/>
-              <ListBox setVal = { (x) => setYear(x) } array = { arrayYears } arrayValues = { arrayYearsValues }  key = "y"/>
+              <ListBox setVal = { setMonth } array = { arrayMonths } arrayValues = { arrayMonthsValues } key = "m"/>
+              <ListBox setVal = { setYear } array = { arrayYears } arrayValues = { arrayYearsValues }  key = "y"/>
           </div>
-          <GetWeekDays />
-          <GenerateCalendar setValC = { (x) => setClicked(x) } month = { month } year = { year } />
-          { (clicked != null ? <Popup setValC = { (x) => setClicked(x) } 
-    events = { events }  element = { clicked } month = { month } year = { year }/> : null)}  
+          <WeekDays />
+          <Calendar setValC = { setClicked } month = { month } year = { year } />
+          {elementPopup}
       </>
   )
 }

@@ -10,30 +10,35 @@ function Popup({ setValC, events, element, month, year }) {
     const y = element.getBoundingClientRect().top - 5;
     const arrowStyle = {
         left :`${ x }px`,
-        top : `${ y + 10 }px`
+        top : `${ y + 35 }px`
     }
     const rectStyle = {
         left :`${ x + 20 }px`,
-        top : `${ y - 25 }px`
+        top : `${ y - 5 }px`
     }
     const index = `${ element.innerText }/${ month }/${ year }`;
-    const array = events[ index ];
+    const eventArray = events[ index ];
     let memos = '';
-    if(array !== undefined)
+    if(eventArray !== undefined)
     {
         // eslint-disable-next-line react/no-array-index-key
-        memos = array.map( (ele, n) => (<div key ={ n }> -&gt;&nbsp;&nbsp; {ele} </div>) )
+        memos = eventArray.map( (ele, n) => (<div key ={ n }> -&gt;&nbsp;&nbsp; {ele} </div>) )
     }
+    let elementMemo = null;
+    if(memo === true){
+        elementMemo = <Memo x = { x } y = { y } addContent = { addContent } setValM = { memoClicked }
+            events = { events } element = { element } month = { month } year = { year }/> 
+    }
+
     return(
         <div >
             <div className = 'arrowleft' style = { arrowStyle }></div>
             <div className = 'popup display-flex' style = { rectStyle }>
-                <div className = 'close-icon' onClick = { () => setValC(null) }>x</div> 
+                <div className = 'close-icon' onClick = { () =>{setValC(null)} }>x</div> 
                 <div className = 'memos'> {memos} </div>
                 <button onClick = { () => memoClicked(true) } className = 'button'>Add Memo</button>
             </div>
-            {(memo === true ? <Memo addContent = { (p) => addContent(p) } setValM = { (p) => memoClicked(p) }
-            events = { events } element = { element } month = { month } year = { year }/> : null) }
+            {elementMemo}
         </div>
     )
 }
