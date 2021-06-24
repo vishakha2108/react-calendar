@@ -5,7 +5,7 @@ import Memo from './Memo'
 
 function Popup({ setValC, events, element, month, year }) {
     const [ , addContent ] = useState(0);
-    const[ memo, memoClicked ] = useState(false);
+    const [ memo, memoClicked ] = useState(false);
     const x = element.getBoundingClientRect().right;
     const y = element.getBoundingClientRect().top - 5;
     const arrowStyle = {
@@ -17,12 +17,11 @@ function Popup({ setValC, events, element, month, year }) {
         top : `${ y - 5 }px`
     }
     const index = `${ element.innerText }/${ month }/${ year }`;
-    const eventArray = events[ index ];
     let memos = '';
-    if(eventArray !== undefined)
+    if(events[ index ]!== undefined)
     {
         // eslint-disable-next-line react/no-array-index-key
-        memos = eventArray.map( (ele, n) => (<div key ={ n }> -&gt;&nbsp;&nbsp; {ele} </div>) )
+        memos = events[ index ].map( (ele, n) => (<div key ={ n }> -&gt;&nbsp;&nbsp; {ele} </div>) )
     }
     let elementMemo = null;
     if(memo === true){

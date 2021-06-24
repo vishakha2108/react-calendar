@@ -17,10 +17,8 @@ const WeekDays = (() => {
         </div>
     )
 });
-
-var events = {};
-
 function App() {
+  const [ events, ] = useState({})
   const [ month, setMonth ] = useState('01');
   const [ year, setYear ] = useState('01');
   //DateButton click

@@ -10,15 +10,13 @@ const Day = ({ visible, innerText, setValC }) => {
 }
 const Week = ({ startText, noOfDays, setValC }) => {
     let i = startText;
+    const days = [];
+    for ( let j = 0; j < 7; j++ ){
+        days.push(<Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC } key = { i }/>)
+    }
     return(
         <div className ='week display-flex'>
-            <Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC }/>
-            <Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC }/>
-            <Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC }/>
-            <Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC }/>
-            <Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC }/>
-            <Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC }/>
-            <Day visible = { (i>0&&i<=noOfDays?true:false) } innerText = { i++ } setValC = { setValC }/>
+            {days}
         </div>
     )
 
@@ -29,14 +27,15 @@ const Calendar = ({ setValC, month, year }) => {
     const day = userDate.getDay();
     let week = 1;
     const noOfDays = new Date(`20${ year }`, month, 0).getDate();
+    const weeks = [];
+    let count = 1
+    for ( let i = 0; i < 6; i++ ){
+        weeks.push(<Week startText = { -day+count } noOfDays = { noOfDays } key = { week++ } setValC = { setValC }/>)
+        count+=7;
+    }
     return(
         <div className = "inner">
-            <Week startText = { -day+1 } noOfDays = { noOfDays } key = { week++ } setValC = { setValC }/>
-            <Week startText = { -day+8 } noOfDays = { noOfDays } key = { week++ } setValC = { setValC }/>
-            <Week startText = { -day+15 } noOfDays = { noOfDays } key = { week++ } setValC = { setValC }/>
-            <Week startText = { -day+22 } noOfDays = { noOfDays } key = { week++ } setValC = { setValC }/>
-            <Week startText = { -day+29 } noOfDays = { noOfDays } key = { week++ } setValC = { setValC }/>
-            <Week startText = { -day+36 } noOfDays = { noOfDays } key = { week++ } setValC = { setValC }/>
+            {weeks}
         </div >
     )
 
