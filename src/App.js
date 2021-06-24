@@ -18,7 +18,20 @@ const WeekDays = (() => {
     )
 });
 function App() {
-  const [ events, ] = useState({})
+  const [ events, addEvent ] = useState({ })
+   function cacheEvents(setValM, key, value){
+    //for storing the memo values
+    if([ key ] in events)
+    {
+        addEvent({ ...events ,  [ key ] : [ ...events[ key ], value ] } );
+    }
+    else{
+
+        addEvent({ ...events ,  [ key ] : [ value ] } );
+    }
+    setValM(false);
+}
+  
   const [ month, setMonth ] = useState('01');
   const [ year, setYear ] = useState('01');
   //DateButton click
@@ -40,8 +53,7 @@ function App() {
   let elementPopup = null;
   if(clicked!=null)
   {
-    elementPopup = <Popup setValC = { setClicked } 
-    events = { events }  element = { clicked } month = { month } year = { year }/> 
+    elementPopup = <Popup setValC = { setClicked } events = { events } addEvents = { cacheEvents } element = { clicked } month = { month } year = { year }/> 
   }
   return (
       <>

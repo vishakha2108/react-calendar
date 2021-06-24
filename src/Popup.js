@@ -3,8 +3,7 @@ import './style.css';
 import React, { useState } from 'react'
 import Memo from './Memo'
 
-function Popup({ setValC, events, element, month, year }) {
-    const [ , addContent ] = useState(0);
+function Popup({ setValC, events,addEvents , element, month, year }) {
     const [ memo, memoClicked ] = useState(false);
     const x = element.getBoundingClientRect().right;
     const y = element.getBoundingClientRect().top - 5;
@@ -21,12 +20,12 @@ function Popup({ setValC, events, element, month, year }) {
     if(events[ index ]!== undefined)
     {
         // eslint-disable-next-line react/no-array-index-key
-        memos = events[ index ].map( (ele, n) => (<div key ={ n }> -&gt;&nbsp;&nbsp; {ele} </div>) )
+        memos = events[ index ].map( (ele, n) => (<div key ={ n }> -&gt;&nbsp;&nbsp;{ele}</div>) )
     }
     let elementMemo = null;
     if(memo === true){
-        elementMemo = <Memo x = { x } y = { y } addContent = { addContent } setValM = { memoClicked }
-            events = { events } element = { element } month = { month } year = { year }/> 
+        elementMemo = <Memo x = { x } y = { y }  setValM = { memoClicked }  addEvents = { addEvents }
+        element = { element } month = { month } year = { year }/> 
     }
 
     return(
