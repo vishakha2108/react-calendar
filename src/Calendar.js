@@ -19,7 +19,6 @@ const Week = ({ startText, noOfDays, setValC }) => {
             {days}
         </div>
     )
-
 }
 const Calendar = ({ setValC, month, year }) => {
     const userDate = new Date(`20${ year }`, month - 1);

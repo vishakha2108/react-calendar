@@ -5,15 +5,18 @@ import App from './App';
 import userEvent from '@testing-library/user-event';
 
 describe('Popup',() =>{
-    test('Event sustains in memo', () => {
+    test('Event sustains in memo', async() => {
         render(<App />);
         userEvent.click(screen.getByText(1));
-        userEvent.click(screen.getByText('Add Memo'));
-        userEvent.type(screen.getByRole('textbox'),'sample');
-        userEvent.click(screen.getByText('Add'));
-        userEvent.click(screen.getByText('x'));
-        userEvent.click(screen.getByText(1));
-        expect(screen.getByText('-> sample')).toBeInTheDocument();
+        const popup = (await (screen.findByText('Add Memo')));
+        userEvent.click(popup);
+        const memo = await (screen.findByRole('textbox'));
+        userEvent.type(memo, 'sample');
+        userEvent.click (screen.getByText('Add'))
+        userEvent.click (screen.getByText('x'))
+        const noPopup = await (screen.findByText(1));
+        userEvent.click(noPopup);
+        expect( await screen.findByText('-> sample')).toBeInTheDocument();
 
     });
 });
