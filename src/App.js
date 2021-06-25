@@ -59,8 +59,8 @@ function App() {
       <>
           <h1 className = 'heading'>Calendar</h1>
           <div className = 'display-flex' key = 'd1'>
-              <ListBox setVal = { setMonth } array = { arrayMonths } arrayValues = { arrayMonthsValues } key = "m"/>
-              <ListBox setVal = { setYear } array = { arrayYears } arrayValues = { arrayYearsValues }  key = "y"/>
+              <ListBox setValC = { setClicked } setVal = { setMonth } array = { arrayMonths } arrayValues = { arrayMonthsValues } key = "m"/>
+              <ListBox setValC = { setClicked } setVal = { setYear } array = { arrayYears } arrayValues = { arrayYearsValues }  key = "y"/>
           </div>
           <WeekDays />
           <Calendar setValC = { setClicked } month = { month } year = { year } />
