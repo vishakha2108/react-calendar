@@ -3,7 +3,7 @@ import './style.css';
 import React, { useState } from 'react'
 import Memo from './Memo'
 
-function Popup({ setValC, events,addEvents , element, month, year }) {
+function Popup({ setValC, events, addEvents, element, month, year }) {
     const [ memo, memoClicked ] = useState(false);
     const x = element.getBoundingClientRect().right;
     const y = element.getBoundingClientRect().top - 5;
@@ -32,7 +32,7 @@ function Popup({ setValC, events,addEvents , element, month, year }) {
         <div >
             <div className = 'arrowleft' style = { arrowStyle }></div>
             <div className = 'popup display-flex' style = { rectStyle }>
-                <div className = 'close-icon' onClick = { () =>{setValC(null)} }>x</div> 
+                <div className = 'close-icon' onClick = { () => {setValC(null)} }>x</div> 
                 <div className = 'memos'> {memos} </div>
                 <button onClick = { () => memoClicked(true) } className = 'button'>Add Memo</button>
             </div>
